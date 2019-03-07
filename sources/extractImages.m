@@ -1,15 +1,14 @@
 %==========================================================================
-%                           EXTRAÇÃO DE IMAGENS
+%                           EXTRACT IMAGES
 %
-%   This script is responsible for extract images from a scene using a pair
-% of webcams. It's necessary to set the ID of each camera (defined by the 
-% MatLab IDE). Returns the captured image pair and a variable that is used 
-% to handle possible errors during this process.
+%   This script is responsible for the extraction of the images from a scene
+% using a pair of webcams. It's necessary to set the ID of each camera (de-
+% fined by the MatLab IDE).
 %==========================================================================
 
 function [lSnap, rSnap, error] = extractImages(LEFT_CAM, RGHT_CAM)
 
-%   Initialize the pair of cameras. The cameras I've used has only the YUY2
+%   Initializes the pair of cameras. The cameras used here has only the YUY2
 % format support. If it not your case, you'll need to comment the lines
 % below with the 'ReturnedColorSpace' variable.
 try 
@@ -38,14 +37,15 @@ end
 imwrite(lSnap, 'im0.png', 'png', 'BitDepth', 8);
 imwrite(rSnap, 'im1.png', 'png', 'BitDepth', 8);
 
-%   Clear the videoinput buffer from the memory.
+%   Clears the videoinput buffer from the memory.
 delete(lCam);
 delete(rCam);
 
 clear('lCam');
 clear('rCam');
 
-%   The error returns 0 (zero) if everything was fine or 1 (one) otherwise.
+%   Returns 0 (zero) if everything were fine, or 1 (one) otherwise.
 error = 0;
 
+%   Ends the script.
 end

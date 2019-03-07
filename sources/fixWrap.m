@@ -1,25 +1,24 @@
 %==========================================================================
-%                     CORREÇÃO DO MAPA DE DISPARIDADES
+%                                FIX WRAP
 %
-%   Script responsável por "corrigir" a posição do mapa de disparidades,
-% utilizando as transformações projetivas obtidas na retificação (além do 
-% mapa de didsparidades original) como parâmetros. Retorna o mapa já corri-
-% gido.
+%   This script "fixes" the disparity map position, based on the original
+% projective transformations, utilized on the rectification process, in or-
+% der to bring the disparity map closer to the original scene position.
 %==========================================================================
 
 function dMap = fixWrap(dMap, tL, tR)
 
-%	Calcula a média entre as transformações projetivas obtidas na retifica-
-% ção.
+%	Calculates the mean value between the projective transformations of the
+% rectification process.
 tM = (tL + tR)/2;
 
-%   Calcula a inversa da transformada projetiva que foi obtida anteriormen-
-% te.
+%   Reverts the projective transformation previously obtained.
 tform = projective2d(tM);
 tform = invert(tform);
 
-%	Aplica a transformada obtida anteriormente ao mapa de disparidades ori-
-% ginal, corrigindo sua posição.
+%	Applies the resulting projective transformation to the disparity map,
+% in order to fix its position.
 dMap = imwarp(dMap, tform, 'OutputView', imref2d(size(dMap)));
 
+%   Ends the script.
 end

@@ -1,5 +1,5 @@
 %==========================================================================
-%                        EXTRACTING MATCHED FEATURES
+%                        EXTRACT MATCHED FEATURES
 %
 %   This script is responsible for extracting matching points between images. 
 % Receives a pair of stereo images as a parameter, and returns the matching
@@ -23,4 +23,5 @@ index = matchFeatures(ftrsL, ftrsR, 'Unique', true);
 lPts = vldPtsL(index(:,1),:);
 rPts = vldPtsR(index(:,2),:);
 
+%   Ends the script.
 end

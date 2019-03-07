@@ -1,21 +1,20 @@
 %==========================================================================
-%                CÁLCULO DA EFICÁCIA DO MAPA DE DISPARIDADES
+%                         GET DISPARITY FITNESS
 %
-%   Script responsável por calcular a taxa de qualidade (fitness) do mapa 
-% de disparidades passado como parâmetro. Tal taxa é dada pelo número de 
-% pixels nulos presentes no mapa; quanto menor este número, melhor o mapa 
-% é.
+%   This script is responsible for the fitness calculation of a disparity
+% map. This fitness is given by the number of null pixels inside the map; 
+% the less this number, the better the map.
 %==========================================================================
 
 function fitness = getDisparityFitness(dMap)
 
-%   Obtém as dimensões do mapa de disparidades.
+%   Obtains the dimensions of the disparity map.
 count = 0;
 
 [height, width] = size(dMap);
 
-%	Conta o número de pixels nulos que estão presentes no mapa.
-for i = 1 : height;
+%	Counts the null pixels inside the disparity map.
+for i = 1 : height
     for j = 1 : width
         if dMap(i, j) == 0
             count = count + 1;
@@ -23,8 +22,9 @@ for i = 1 : height;
     end
 end
 
-%	Calcula a eficiência do mapa.
+%	Calculates the disparity map fitness.
 dimension = height * width;
 fitness = (count / dimension) * 100;
 
+%   Ends the script.
 end

@@ -1,16 +1,15 @@
 %==========================================================================
-%               EXIBIÇÃO DE UMA IMAGEM CAPTURADA PELO SISTEMA
+%                               SHOW IMAGE
 %
-%   Script responsável por representar uma das imagens do sistema de visão
-% estéreo na tela.
+%   This script just shows one of the stereo images on the screen.
 %==========================================================================
 
 function showImage(image)
 
-%	Cria uma nova figura.
+%	Creates a new figure.
 figure;
 
-%	Exibe uma das imagens do sistema de visão estéreo.
+%	Shows the original image.
 imshow(image);
 title('Original Image (Left)');
 

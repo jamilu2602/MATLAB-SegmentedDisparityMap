@@ -1,18 +1,16 @@
 %==========================================================================
-%                        LOAD IMAGES FROM A DATABASE
+%                               LOAD IMAGES
 %
-%   Script responsável por carregar um par de imagens estéreo que foi pre-
-% viamente capturado. Utilizado, em geral, quando não há câmeras ligadas ao
-% ambiente.
+%   This script is responsible for load an image pair from a given database.
 %==========================================================================
 
-function [lSnap, rSnap, error] = loadImages(database, scene, type)
+function [lSnap, rSnap, error] = loadImages(scene, type)
 
-%	Lê os arquivos de imagem de um diretório.
-pathL = strcat('../dataset/', database, '/', scene, '/im0.', type);
-pathR = strcat('../dataset/', database, '/', scene, '/im1.', type);
+%	Loads the files from a directory.
+pathL = strcat('../dataset/', scene, '/im0.', type);
+pathR = strcat('../dataset/', scene, '/im1.', type);
 
-%	Lê os arquivos de imagem de um diretório.
+%	Reads the images.
 try 
     lSnap = imread(pathL, type);
     rSnap = imread(pathR, type);
@@ -21,8 +19,8 @@ catch
     return;
 end
 
-%   Variável utilizada no controle de erros da função; retorna 0 se tudo 
-% correr bem.
+%   Returns 0 (zero) if everything were fine, or 1 (one) otherwise.
 error = 0;
 
+%   Ends the script.
 end

@@ -23,8 +23,9 @@ rSnap = imadjust(rSnap);
 lSnap = imsharpen(lSnap);
 rSnap = imsharpen(rSnap);
 
-%   Resize the images.
+%   Resizes the images.
 lSnap = imresize(lSnap, [240 320]);
 rSnap = imresize(rSnap, [240 320]);
 
+%   Ends the script.
 end

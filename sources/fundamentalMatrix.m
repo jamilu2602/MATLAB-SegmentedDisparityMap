@@ -1,40 +1,39 @@
 %==========================================================================
-%                       ESTIMAÇÃO DA MATRIZ FUNDAMENTAL
+%                           FUNDAMENTAL MATRIX
 %
-%   Script responsável pela estimação da matriz fundamental. Recebe os pa-
-% res de pontos correspondentes entre as imagens, e retorna a matriz funda-
-% mental, além de novos conjuntos de correspondências, que contêm apenas as
-% que foram mapeadas pela matriz. Também utiliza uma variável de controle
-% de erros.
+%   This script is responsible for estimate the fundamental matrix. It uses
+% the original corresponding points of the scene, and returns the fundamen-
+% tal matrix, besides a new set of points, containing only the correspon-
+% ding points that were matched by the estimated fundamental matrix.
 %==========================================================================
 
 function [lPts, rPts, F, error] = fundamentalMatrix(lPts, rPts)
 
-%   Obtém o número de correspondências iniciais.
+%   Gets the number of initial correspondences.
 [lines, ~] = size(lPts);
 
-%	Escolhe a métrica de qualidade da matriz fundamental de acordo com o 
-% número de correspondências iniciais. Se forem mais de dezesseis...
+%	Choses the fundamental matrix metric based on the number of initial
+% matches. If it's is 16...
 if lines >= 16
-    %   ...utiliza-se a métrica de Least Median of Squares (LMedS). Já se
-    % forem menos que dezesseis, mas ao menos oito...
+    %   ...uses the Least Median of Squares (LMedS) metric. Else, if
+    % it's less than sixteen, but greater than eight...
     error = 0;
     method = 'LMedS';
 
-else if lines >= 8
-        %   ...utiliza-se a métrica de M-estimator Sample Consensus (MSAC).
-        % Mas se forem menos de oito correspondências...
+else
+    if lines >= 8
+        %   ...uses the M-estimator Sample Consensus (MSAC) metric. Else,
+        % if it's less than eight...
         error = 0;
         method = 'MSAC';
     else
-        %   ...daí não é possível estimar a matriz fundamental.
+        %   ...it's not possible to estimate the fundamental matrix.
         error = 1;
         return;
     end
 end
 
-%   Estima a matriz fundamental, de acordo com a métrica de qualidade esco-
-% lhida.
+%   If the metric were chosen, estimates the fundamental matrix, using it.
 if error == 0
     
     [F, inliers] = estimateFundamentalMatrix(lPts, rPts, 'Method', method);
@@ -51,4 +50,5 @@ else
 
 end
 
+%   Ends the script.
 end

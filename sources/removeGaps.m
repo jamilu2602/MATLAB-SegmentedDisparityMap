@@ -1,18 +1,17 @@
 %==========================================================================
-%                        REMOÇÃO DE BLOCOS NULOS
+%                               REMOVE GAPS
 %
-%   Script responsável pela remoção do máximo de blocos verticais de tons 
-% de cinza nulos do mapa de disparidades passado como parâmetro. Retorna o 
-% mesmo mapa, corrigido.
+%   This script is responsible for removing the highest number of null 
+% grayscale blocks inside the disparity map, increasing its fitness.
 %==========================================================================
 
 function dMap = removeGaps(dMap)
 
-%	Inicializa as variáveis necessárias no algoritmo.
+%	Initializes the needed variables.
 var = 1;
 [lines, ~] = size(dMap);
 
-%	Remove os blocos nulos de cinza do lado esquerdo do mapa.
+%	Removes the nul blocks from the left side of the map.
 while var ~= 0
     
     for i = 2:lines
@@ -27,11 +26,11 @@ while var ~= 0
     
 end
 
-%	Reinicializa as variáveis necessárias no algoritmo.
+%	Reinitializes the needed variables.
 var = 1;
 [lines, columns] = size(dMap);
 
-%	Remove os blocos nulos de cinza do lado direito do mapa.
+%	Removes the nul blocks from the right side of the map.
 while var ~= 0
     
     for i = 2:lines
@@ -46,5 +45,6 @@ while var ~= 0
     end
     
 end
-    
+
+%   Ends the script.
 end
