@@ -6,11 +6,11 @@
 % der to bring the disparity map closer to the original scene position.
 %==========================================================================
 
-function dMap = fixWrap(dMap, tL, tR)
+function dMap = fixWrap(dMap, lTrans, rTrans)
 
 %	Calculates the mean value between the projective transformations of the
 % rectification process.
-tM = (tL + tR)/2;
+tM = (lTrans + rTrans)/2;
 
 %   Reverts the projective transformation previously obtained.
 tform = projective2d(tM);

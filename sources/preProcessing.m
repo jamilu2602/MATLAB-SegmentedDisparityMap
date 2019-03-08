@@ -7,25 +7,25 @@
 %   (Maybe I'll try new concepts in the future, so stay alert!)
 %==========================================================================
 
-function [lSnap, rSnap] = preProcessing(lSnap, rSnap)
+function [lImage, rImage] = preProcessing(lImage, rImage, imgSize)
 
 %	Greyscale conversion (if needed).
-if size(lSnap, 3) == 3
-    lSnap = rgb2gray(lSnap);
-    rSnap = rgb2gray(rSnap);
+if size(lImage, 3) == 3
+    lImage = rgb2gray(lImage);
+    rImage = rgb2gray(rImage);
 end
 
 %   Increases the image intensity (contrast) of each images.
-lSnap = imadjust(lSnap);
-rSnap = imadjust(rSnap);
+lImage = imadjust(lImage);
+rImage = imadjust(rImage);
 
 %   Increases the sharpness of each images.
-lSnap = imsharpen(lSnap);
-rSnap = imsharpen(rSnap);
+lImage = imsharpen(lImage);
+rImage = imsharpen(rImage);
 
 %   Resizes the images.
-lSnap = imresize(lSnap, [240 320]);
-rSnap = imresize(rSnap, [240 320]);
+lImage = imresize(lImage, imgSize);
+rImage = imresize(rImage, imgSize);
 
 %   Ends the script.
 end

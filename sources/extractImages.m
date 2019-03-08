@@ -6,15 +6,15 @@
 % fined by the MatLab IDE).
 %==========================================================================
 
-function [lSnap, rSnap, error] = extractImages(LEFT_CAM, RGHT_CAM)
+function [lImage, rImage, error] = extractImages(lCamera, rCamera)
 
 %   Initializes the pair of cameras. The cameras used here has only the YUY2
 % format support. If it not your case, you'll need to comment the lines
 % below with the 'ReturnedColorSpace' variable.
 try 
     
-    lCam = videoinput('winvideo', LEFT_CAM, 'YUY2_640x480');
-    rCam = videoinput('winvideo', RGHT_CAM, 'YUY2_640x480');
+    lCam = videoinput('winvideo', lCamera, 'YUY2_640x480');
+    rCam = videoinput('winvideo', rCamera, 'YUY2_640x480');
 
     lCam.ReturnedColorSpace = 'rgb';
     rCam.ReturnedColorSpace = 'rgb';
@@ -26,16 +26,16 @@ end
 
 %   Tries to captures the images using the cameras.
 try
-    lSnap = getsnapshot(lCam);
-    rSnap = getsnapshot(rCam);
+    lImage = getsnapshot(lCam);
+    rImage = getsnapshot(rCam);
 catch
     error = 2;
     return;
 end
 
 %   Saves the images (in order to add to a database later).
-imwrite(lSnap, 'im0.png', 'png', 'BitDepth', 8);
-imwrite(rSnap, 'im1.png', 'png', 'BitDepth', 8);
+imwrite(lImage, 'im0.png', 'png', 'BitDepth', 8);
+imwrite(rImage, 'im1.png', 'png', 'BitDepth', 8);
 
 %   Clears the videoinput buffer from the memory.
 delete(lCam);

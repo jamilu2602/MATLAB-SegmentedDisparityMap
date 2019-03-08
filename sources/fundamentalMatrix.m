@@ -7,10 +7,10 @@
 % ding points that were matched by the estimated fundamental matrix.
 %==========================================================================
 
-function [lPts, rPts, F, error] = fundamentalMatrix(lPts, rPts)
+function [lPoints, rPoints, F, error] = fundamentalMatrix(lPoints, rPoints)
 
 %   Gets the number of initial correspondences.
-[lines, ~] = size(lPts);
+[lines, ~] = size(lPoints);
 
 %	Choses the fundamental matrix metric based on the number of initial
 % matches. If it's is 16...
@@ -36,17 +36,17 @@ end
 %   If the metric were chosen, estimates the fundamental matrix, using it.
 if error == 0
     
-    [F, inliers] = estimateFundamentalMatrix(lPts, rPts, 'Method', method);
+    [F, inliers] = estimateFundamentalMatrix(lPoints, rPoints, 'Method', method);
 
-    lPts = lPts(inliers, :);
-    rPts = rPts(inliers, :);
+    lPoints = lPoints(inliers, :);
+    rPoints = rPoints(inliers, :);
 
 else
     
     F = zeros(3);
     
-    lPts = [0 0];
-    rPts = [0 0];
+    lPoints = [0 0];
+    rPoints = [0 0];
 
 end
 

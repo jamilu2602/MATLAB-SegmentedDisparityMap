@@ -6,22 +6,22 @@
 % points between them.
 %==========================================================================
 
-function [lPts, rPts] = extractMatchedFeatures(lSnap, rSnap)
+function [lPoints, rPoints] = extractMatchedFeatures(lImage, rImage)
 
 %   Detects the corners of each image using the corner detection algorithm.
 % The Min8Val algorithm had the best results in a previous analysis.
-surfL = detectMinEigenFeatures(lSnap);
-surfR = detectMinEigenFeatures(rSnap);
+surfL = detectMinEigenFeatures(lImage);
+surfR = detectMinEigenFeatures(rImage);
 
 %   Calculates the matches between the obtained corners of each image, using
 % the Sum of Squared Differences (SSD).
-[ftrsL, vldPtsL] = extractFeatures(lSnap, surfL);
-[ftrsR, vldPtsR] = extractFeatures(rSnap, surfR);
+[ftrsL, vldPtsL] = extractFeatures(lImage, surfL);
+[ftrsR, vldPtsR] = extractFeatures(rImage, surfR);
 
 index = matchFeatures(ftrsL, ftrsR, 'Unique', true);
 
-lPts = vldPtsL(index(:,1),:);
-rPts = vldPtsR(index(:,2),:);
+lPoints = vldPtsL(index(:,1),:);
+rPoints = vldPtsR(index(:,2),:);
 
 %   Ends the script.
 end

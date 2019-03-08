@@ -11,10 +11,10 @@
 %     on Computer Vision and Pattern Recognition, v. 2, p. 807-814.
 %==========================================================================
 
-function [dispMap, dispRng] = disparityMap(lSnap, rSnap, dispRng)
+function [dMap, dRange] = disparityMap(lImage, rImage, dRange)
 
 %   Applies the disparity map function.
-dispMap = disparity(lSnap, rSnap, 'DisparityRange', dispRng);
+dMap = disparity(lImage, rImage, 'DisparityRange', dRange);
 
 %   Ends the script.
 end

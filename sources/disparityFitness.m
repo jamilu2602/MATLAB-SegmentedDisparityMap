@@ -1,12 +1,12 @@
 %==========================================================================
-%                         GET DISPARITY FITNESS
+%                           DISPARITY FITNESS
 %
 %   This script is responsible for the fitness calculation of a disparity
 % map. This fitness is given by the number of null pixels inside the map; 
 % the less this number, the better the map.
 %==========================================================================
 
-function fitness = getDisparityFitness(dMap)
+function fitness = disparityFitness(dMap)
 
 %   Obtains the dimensions of the disparity map.
 count = 0;
